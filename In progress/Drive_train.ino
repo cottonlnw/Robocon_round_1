@@ -1,4 +1,4 @@
-void Drive_semi(int speed,int strafe, int turn) {
+void Drive_train(int speed,int strafe, int turn) {
   int motor1Speed = speed + strafe + turn;    // LF
   int motor2Speed = speed - strafe - turn;    // RF
   int motor3Speed = speed - strafe + turn;    // LB
