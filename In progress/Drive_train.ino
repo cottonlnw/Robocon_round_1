@@ -1,4 +1,4 @@
-void Drive_train(int speed,int strafe, int turn) {
+void Drive_semi(int speed,int strafe, int turn) {
   int motor1Speed = speed + strafe + turn;    // LF
   int motor2Speed = speed - strafe - turn;    // RF
   int motor3Speed = speed - strafe + turn;    // LB
@@ -23,30 +23,4 @@ void ControlMotor_semi(int speed, int pinA, int pinB) {
 int adjust_speed_semi(int s) {
   if (abs(s) < 25) return 0;
   return constrain(s, -255, 255);
-}
-
-void drive_command(){
-  if (lock_position_left == 0 && lock_position_right ==0){ // manual mode
-    digitalWrite(trigger_left, LOW);
-    digitalWrite(trigger_mid, LOW);
-    digitalWrite(trigger_right, LOW);
-    drive_manual(ry,rx,lx);
-  }else if(lock_position_left == 1 && lock_position_right == 0){ // set to left[100,200,0,60]
-    digitalWrite(trigger_left, HIGH);
-    digitalWrite(trigger_mid, LOW);
-    digitalWrite(trigger_right, LOW);
-    Drive_train(speed,strafe,turn);
-  }else if (lock_position_right == 1 && lock_position_left == 0){ // set to right[100,0,200,60]
-    digitalWrite(trigger_right, HIGH);
-    digitalWrite(trigger_mid, LOW);
-    digitalWrite(trigger_left, LOW);
-    Drive_train(speed,strafe,turn);
-  }else if (lock_position_right == 1 && lock_position_left == 1){ // set to mid[100,400,0,0]
-    digitalWrite(trigger_mid, HIGH);
-    digitalWrite(trigger_left, LOW);
-    digitalWrite(trigger_right, LOW);
-    Drive_train(speed,strafe,turn);
-  }else{
-    drive_train(0,0,0);
-}
 }
