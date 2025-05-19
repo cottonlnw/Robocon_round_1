@@ -70,31 +70,17 @@ void setup() {
 
 void loop() {
   readAndParseSerial1();
+  drive_manual(speed,strafe,turn);
   readauto();
-  drive_command();
-  /*if (lock_position_left == 0 && lock_position_right ==0){
-    digitalWrite(trigger_left, LOW);
-    digitalWrite(trigger_mid, LOW);
-    digitalWrite(trigger_right, LOW);
-    drive_manual(ry,rx,lx);
-  }else if(lock_position_left == 1 && lock_position_right == 0){
-    digitalWrite(trigger_left, HIGH);
-    digitalWrite(trigger_mid, LOW);
-    digitalWrite(trigger_right, LOW);
-    Drive_train(speed,strafe,turn);
-  }else if (lock_position_right == 1 && lock_position_left == 0){
-    digitalWrite(trigger_right, HIGH);
-    digitalWrite(trigger_mid, LOW);
-    digitalWrite(trigger_left, LOW);
-    Drive_train(speed,strafe,turn);
-  }else if (lock_position_right == 1 && lock_position_left == 1){
-    digitalWrite(trigger_mid, HIGH);
-    digitalWrite(trigger_left, LOW);
-    digitalWrite(trigger_right, LOW);
-    Drive_train(speed,strafe,turn);
-  }else{
-    drive_train(0,0,0);
-} */
+//   if (lock_position_left == 0 && lock_position_right ==0){
+//     drive_manual(speed,strafe,turn);
+//   }else if(lock_position_left == 1){
+//     Drive_semi(speed,strafe,turn);
+//   }else if (lock_position_right == 1){
+//     Drive_semi(speed,strafe,turn);
+//   }else{
+//     drive_manual(speed,strafe,turn);
+// }
 
 }
 
@@ -119,9 +105,9 @@ void readAndParseSerial1() {
       values[index] = inputData.substring(lastIndex).toInt();  // ตัวสุดท้าย
 
       if (index >= 2) {
-        lx = values[0];
-        rx = values[2];
-        ry  = values[1];
+        turn   = values[0];
+        strafe = -values[2];
+        speed  = -values[1];
         auto_up = values[3];
         slow_mode = values[4];
         manual_rack_up = values[5];
