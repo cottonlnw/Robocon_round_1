@@ -76,7 +76,7 @@ void loop() {
     digitalWrite(trigger_left, LOW);
     digitalWrite(trigger_mid, LOW);
     digitalWrite(trigger_right, LOW);
-    drive_train(ry,rx,lx);
+    drive_manual(ry,rx,lx);
   }else if(lock_position_left == 1 && lock_position_right == 0){
     digitalWrite(trigger_left, HIGH);
     digitalWrite(trigger_mid, LOW);
