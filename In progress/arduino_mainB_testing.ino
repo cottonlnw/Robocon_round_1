@@ -71,7 +71,7 @@ void setup() {
 void loop() {
   readAndParseSerial1();
   readauto();
-  automode();
+  drive_command();
   /*if (lock_position_left == 0 && lock_position_right ==0){
     digitalWrite(trigger_left, LOW);
     digitalWrite(trigger_mid, LOW);
