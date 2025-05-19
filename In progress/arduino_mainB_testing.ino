@@ -57,7 +57,7 @@ void setup() {
 void loop() {
   readAndParseSerial1();
   if (lock_position_left == 0 && lock_position_right ==0){
-    drive_manual(speed,strafe,turn);
+    drive_manual(ry,rx,lx);
   }else if(lock_position_left == 1){
     Drive_semi(speed,strafe,turn);
   }else if (lock_position_right == 1){
@@ -89,9 +89,9 @@ void readAndParseSerial1() {
       values[index] = inputData.substring(lastIndex).toInt();  // ตัวสุดท้าย
 
       if (index >= 2) {
-        turn   = values[0];
-        strafe = values[2];
-        speed  = values[1];
+        lx = values[0];
+        rx = values[2];
+        ry  = values[1];
         auto_up = values[3];
         slow_mode = values[4];
         manual_rack_up = values[5];
