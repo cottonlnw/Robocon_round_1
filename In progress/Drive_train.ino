@@ -24,3 +24,29 @@ int adjust_speed_semi(int s) {
   if (abs(s) < 25) return 0;
   return constrain(s, -255, 255);
 }
+
+void automode(){
+  if (lock_position_left == 0 && lock_position_right ==0){
+    digitalWrite(trigger_left, LOW);
+    digitalWrite(trigger_mid, LOW);
+    digitalWrite(trigger_right, LOW);
+    drive_manual(ry,rx,lx);
+  }else if(lock_position_left == 1 && lock_position_right == 0){
+    digitalWrite(trigger_left, HIGH);
+    digitalWrite(trigger_mid, LOW);
+    digitalWrite(trigger_right, LOW);
+    Drive_train(speed,strafe,turn);
+  }else if (lock_position_right == 1 && lock_position_left == 0){
+    digitalWrite(trigger_right, HIGH);
+    digitalWrite(trigger_mid, LOW);
+    digitalWrite(trigger_left, LOW);
+    Drive_train(speed,strafe,turn);
+  }else if (lock_position_right == 1 && lock_position_left == 1){
+    digitalWrite(trigger_mid, HIGH);
+    digitalWrite(trigger_left, LOW);
+    digitalWrite(trigger_right, LOW);
+    Drive_train(speed,strafe,turn);
+  }else{
+    drive_train(0,0,0);
+}
+}
