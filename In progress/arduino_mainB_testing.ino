@@ -42,6 +42,7 @@ int rackPower = 200;  // ระดับความแรง (0–255)
 
 #define trigger_left 80
 #define trigger_right 81
+#define trigger_mid 82
 
 void setup() {
   Serial.begin(115200);  // Start the built-in serial communication for debugging
@@ -64,6 +65,7 @@ void setup() {
   pinMode(tu, INPUT);
   pinMode(trigger_left, OUTPUT);
   pinMode(trigger_right, OUTPUT);
+  pinMode(trigger_mid, OUTPUT);
 }
 
 void loop() {
@@ -71,15 +73,27 @@ void loop() {
   readauto();
   
   if (lock_position_left == 0 && lock_position_right ==0){
+    digitalWrite(trigger_left, LOW);
+    digitalWrite(trigger_mid, LOW);
+    digitalWrite(trigger_right, LOW);
     drive_train(ry,rx,lx);
   }else if(lock_position_left == 1 && lock_position_right == 0){
     digitalWrite(trigger_left, HIGH);
+    digitalWrite(trigger_mid, LOW);
+    digitalWrite(trigger_right, LOW);
     Drive_train(speed,strafe,turn);
   }else if (lock_position_right == 1 && lock_position_left == 0){
     digitalWrite(trigger_right, HIGH);
+    digitalWrite(trigger_mid, LOW);
+    digitalWrite(trigger_left, LOW);
+    Drive_train(speed,strafe,turn);
+  }else if (lock_position_right == 1 && lock_position_left == 1){
+    digitalWrite(trigger_mid, HIGH);
+    digitalWrite(trigger_left, LOW);
+    digitalWrite(trigger_right, LOW);
     Drive_train(speed,strafe,turn);
   }else{
-    drive_manual(0,0,0);
+    drive_train(0,0,0);
 }
 
 }
