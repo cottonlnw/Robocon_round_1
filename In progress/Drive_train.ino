@@ -27,10 +27,6 @@ int adjust_speed_semi(int s) {
 
 void drive_command(){
   if (lock_position_left == 0 && lock_position_right ==0){ // manual mode
-    if (slow_mode == 1){
-      ry = ry/4;
-      rx = rx/4;
-      lx = lx/4;       }
     digitalWrite(trigger_left, LOW);
     digitalWrite(trigger_mid, LOW);
     digitalWrite(trigger_right, LOW);
