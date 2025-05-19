@@ -5,16 +5,16 @@ void drive_manual(int speed,int strafe, int turn) {
 
 
   if (slow_mode==1){
-  motor1Speed = (speed + strafe + turn)/3;    // LF
-  motor2Speed = (speed - strafe - turn)/3;    // RF
-  motor3Speed = (speed - strafe + turn)/3;    // LB
-  motor4Speed = (speed + strafe - turn)/3; 
+  motor1Speed = ((speed + strafe + turn)/3);    // LF
+  motor2Speed = ((speed - strafe - turn)/3);    // RF
+  motor3Speed = ((speed - strafe + turn)/3);    // LB
+  motor4Speed = ((speed + strafe - turn)/3); 
   }else{
     // Calculate motor speeds
-  motor1Speed = speed + strafe + turn;    // LF
-  motor2Speed = speed - strafe - turn;    // RF
-  motor3Speed = speed - strafe + turn;    // LB
-  motor4Speed = speed + strafe - turn;    // RB
+  motor1Speed =  (speed + strafe + turn);  // LF
+  motor2Speed = (speed - strafe - turn);    // RF
+  motor3Speed = (speed - strafe + turn);    // LB
+  motor4Speed = (speed + strafe - turn);    // RB
   }
 
   // Normalize speeds
@@ -37,24 +37,24 @@ void drive_manual(int speed,int strafe, int turn) {
   ControlMotor(motor3Speed, motorLB1, motorLBPMW);
   ControlMotor(motor4Speed, motorRB1, motorRBPMW);
   // กด manual → ใช้ manual_rack แทน auto_racking ทันที
-if (manual_rack_up == 1 || manual_rack_down == 1) {
-  isManualLock = true;
+// if (manual_rack_up == 1 || manual_rack_down == 1) {
+//   isManualLock = true;
 
-}
-//ถ้ากดปุ่มปลด manual → กลับไป auto ได้
-if (manual_unlock_button == 1) {
-  isManualLock = false;
-}
-//ตัดสินใจว่าต้องใช้ฟังก์ชันไหน
-if (isManualLock) {
+// }
+// //ถ้ากดปุ่มปลด manual → กลับไป auto ได้
+// if (manual_unlock_button == 1) {
+//   isManualLock = false;
+// }
+// //ตัดสินใจว่าต้องใช้ฟังก์ชันไหน
+// if (isManualLock) {
+//   manual_rack(manual_rack_up, manual_rack_down);
+//   Serial.println("manual");
+// } else {
+//   // auto_racking(auto_up);
+//   Serial.println("auto_racking");
+// }
   manual_rack(manual_rack_up, manual_rack_down);
-  Serial.println("manual");
-} else {
-  auto_racking(auto_up);
-  Serial.println("auto_racking");
-}
-  // spreading(Spread);
-  //Serial.println(speed);
+
   delay(25);
 }
 
