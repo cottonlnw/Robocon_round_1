@@ -71,8 +71,8 @@ void setup() {
 void loop() {
   readAndParseSerial1();
   readauto();
-  
-  if (lock_position_left == 0 && lock_position_right ==0){
+  automode();
+  /*if (lock_position_left == 0 && lock_position_right ==0){
     digitalWrite(trigger_left, LOW);
     digitalWrite(trigger_mid, LOW);
     digitalWrite(trigger_right, LOW);
@@ -94,7 +94,7 @@ void loop() {
     Drive_train(speed,strafe,turn);
   }else{
     drive_train(0,0,0);
-}
+} */
 
 }
 
