@@ -6,6 +6,7 @@
 //ปุ่ม set ตำแหน่ง
 #define trigger1 76
 #define trigger2 77
+#define trigger3 82
 #define reset_gyro1 81
 
 //AnalogWrite
@@ -13,6 +14,7 @@
 #define strafe 79
 #define turn 80
 
+#define shootball_power 2
 // กำหนดการเชื่อมต่อ MPU6050
 MPU6050 mpu(Wire);
 

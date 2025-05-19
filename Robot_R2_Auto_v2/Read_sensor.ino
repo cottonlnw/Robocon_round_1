@@ -94,8 +94,9 @@ void read_lidar_r() {
 void set_pin(){
   pinMode(trigger1, INPUT);
   pinMode(trigger2, INPUT);
-
+  pinMode(trigger3, INPUT)
   pinMode(speed, OUTPUT);
   pinMode(strafe, OUTPUT);
   pinMode(turn, OUTPUT);
+  pinMode(shootball_power, OUTPUT);
 }

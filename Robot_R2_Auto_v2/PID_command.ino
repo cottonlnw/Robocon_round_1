@@ -66,7 +66,9 @@ void marking() {
 
   if (trig1 && !trig2) {
     runStage(stage1, shoot_spot1, true, 1); // Sensor[1] ใช้สำหรับ strafe
+    analogWrite(shootball_power,200);
   } else if (!trig1 && trig2) {
+    analogWrite(shootball_power,200);
     runStage(stage2, shoot_spot2, true, 2); // Sensor[2] ใช้สำหรับ strafe
   } else {
     // ไม่มี trigger ใดทำงาน รีเซต stage และหยุดแรง
