@@ -36,6 +36,13 @@ int rackPower = 200;  // ระดับความแรง (0–255)
 #define limitUp    26    // ลิมิตบน
 #define limitDown  24    // ลิมิตล่าง
 
+#define sp 77
+#define st 78
+#define tu 79
+
+#define trigger_left 80
+#define trigger_right 81
+
 void setup() {
   Serial.begin(115200);  // Start the built-in serial communication for debugging
   Serial1.begin(115200);
@@ -52,16 +59,25 @@ void setup() {
   pinMode(motorPWM, OUTPUT);
   pinMode(limitUp, INPUT_PULLUP);
   pinMode(limitDown, INPUT_PULLUP);
+  pinMode(sp, INPUT);
+  pinMode(st, INPUT);
+  pinMode(tu, INPUT);
+  pinMode(trigger_left, OUTPUT);
+  pinMode(trigger_right, OUTPUT);
 }
 
 void loop() {
   readAndParseSerial1();
+  readauto();
+  
   if (lock_position_left == 0 && lock_position_right ==0){
-    drive_manual(ry,rx,lx);
-  }else if(lock_position_left == 1){
-    Drive_semi(speed,strafe,turn);
-  }else if (lock_position_right == 1){
-    Drive_semi(speed,strafe,turn);
+    drive_train(ry,rx,lx);
+  }else if(lock_position_left == 1 && lock_position_right == 0){
+    digitalWrite(trigger_left, HIGH);
+    Drive_train(speed,strafe,turn);
+  }else if (lock_position_right == 1 && lock_position_left == 0){
+    digitalWrite(trigger_right, HIGH);
+    Drive_train(speed,strafe,turn);
   }else{
     drive_manual(0,0,0);
 }
@@ -108,3 +124,8 @@ void readAndParseSerial1() {
   }
 }
 
+void readauto(){
+  int speed = analogRead(sp);
+  int strafe = analogRead(st);
+  int turn = analogRead(tu);
+}
