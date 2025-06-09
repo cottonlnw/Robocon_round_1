@@ -29,6 +29,10 @@ void onEvent() {
     Serial.print("Circle: ");
     Serial.println(toggle[2]);
   }
+  if(ps5.event.button_down.cross){
+    toffle[3] = !toggle[3];
+    Serial.print("Cross: ");
+    Serial.println(toggle[3]);
 
   if(ps5.event.button_down.l1) {
     toggle[4] = !toggle[4];
